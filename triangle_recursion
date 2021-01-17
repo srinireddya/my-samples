@@ -1,0 +1,7 @@
+with recursive draw (str1, n ) AS
+(
+  SELECT cast('*' as char(100)) as str1,1 as n
+  UNION ALL
+  SELECT  concat(str1, ' *'), n+1  FROM draw WHERE n < 20
+)    
+select str1 from draw order by n desc   
