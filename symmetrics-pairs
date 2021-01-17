@@ -1,0 +1,34 @@
+select
+    f1.x,
+    f1.y
+from
+    Functions f1
+where
+    exists (
+    select
+        1
+    from
+        Functions f2
+    where
+        f1.x = f2.y
+        and f1.y = f2.x
+        and f2.x>f1.x )
+    and (f1.x != f1.y)
+union
+select
+    x,
+    y
+from
+    Functions f3
+where
+    f3.x = f3.y
+    and ((
+    select
+        count(*)
+    from
+        Functions f4
+    where
+        f4.x = f3.x
+        and f4.y = f4.x)>1)
+order by
+    x
