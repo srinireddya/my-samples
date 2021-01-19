@@ -1,0 +1,40 @@
+https://www.hackerrank.com/challenges/day-of-the-programmer/problem
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the dayOfProgrammer function below.
+def dayOfProgrammer(year):
+    non_Leap_dict = {1:31, 2:28, 3:31, 4:30, 5:31, 6:30, 7:31, 8:31,9:30, 10:31, 11:30, 12:31}
+
+    leap_dict = {1:31, 2:29, 3:31, 4:30, 5:31, 6:30, 7:31, 8:31,9:30, 10:31, 11:30, 12:31}
+    dict_value = non_Leap_dict
+    if year%4 ==0:
+        dict_value = leap_dict
+    running_total = 0
+    month = 1
+    for x in dict_value.keys():
+        running_total = running_total+dict_value[x]
+        month = x
+        
+        if (256-running_total-dict_value[x+1]<0): 
+            break
+    date_val = str(256-running_total)+'.'+str(month+1).zfill(2)+'.'+str(year)
+    print(date_val)
+    return date_val
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    year = int(input().strip())
+
+    result = dayOfProgrammer(year)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
