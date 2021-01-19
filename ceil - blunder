@@ -1,0 +1,5 @@
+select CEIL(a.tot-a.miss) from (
+select AVG(SALARY) as tot , AVG(cast(REPLACE(CAST(SALARY AS CHAR(10)),'0','') as SIGNED)) as miss from EMPLOYEES) a;
+
+
+SELECT CEIL(AVG(Salary)-AVG(REPLACE(Salary,'0',''))) FROM EMPLOYEES;
